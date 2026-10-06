@@ -26,9 +26,27 @@ A forecasting system can be statistically accurate and still fail to create enou
 | Product | Domain | Status | Key Result | Honest Notes |
 |---|---|---|---|---|
 | **EventHorizon Crypto** | BTC/USDT 5-second direction | ✅ Technically validated | **+8 pp edge** (60% vs 52% baseline) | Economically unviable under standard exchange fees; published as a complete case study |
-| **EventHorizon Demand** | Retail demand forecasting (M5 Walmart) | ✅ Technically validated · 🔎 Market validation ongoing | **30% improvement** over seasonal baseline (WAPE 30.9% vs 44.4%) | Statistically significant in 7/7 stores; WI_1 shows smaller margin, documented openly |
+| **EventHorizon Demand** | Retail demand forecasting (M5 Walmart) | ✅ Technically validated · 🔎 Market validation ongoing | **~30% lower forecast error** (WAPE 30.93% vs. 44.15% baseline) | Statistically significant in 7/7 stores; WI_1 shows smaller margin, documented openly |
 
 > **Technical validation and market validation are treated as separate problems.**
+
+---
+
+## EventHorizon Demand
+
+**EventHorizon Demand** is a machine-learning system for daily and weekly demand forecasting.
+
+The current system uses historical sales and temporal features, together with price and promotional information, to estimate future demand.
+
+On the M5 retail benchmark, the final model achieved:
+
+- **30.93% WAPE**
+- **44.15% WAPE** for the naive lag-7 baseline
+- **~30% lower forecast error** than the baseline
+
+These results establish **technical model performance**, not business ROI.
+
+Current research focuses on identifying real-world situations where improved forecasting can meaningfully change purchasing, production, or replenishment decisions.
 
 ---
 
