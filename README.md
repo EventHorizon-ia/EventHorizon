@@ -1,8 +1,11 @@
 
 # EventHorizon-AI
 
-> **A rigorous temporal AI platform.**  
-> We build and validate forecasting systems with academic-grade statistical discipline — then test whether they solve problems worth paying to solve.
+> **An independent AI forecasting and time-series research platform.**
+
+EventHorizon-AI builds and validates forecasting systems for real-world
+decision-making, with a focus on demand forecasting, statistical validation,
+and understanding whether better predictions actually create business value.
 
 ---
 
