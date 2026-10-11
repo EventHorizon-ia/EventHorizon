@@ -38,7 +38,7 @@ justify a solution.
 
 ## EventHorizon Demand
 
-![EventHorizon Demand — WAPE by store, M5 temporal holdout validation](docs/images/demand-wape-by-store.png)
+![EventHorizon Demand — WAPE by store, M5 temporal holdout validation](docs/images/demand-validation.png)
 
 **EventHorizon Demand** is a machine-learning system for daily and weekly
 demand forecasting.
