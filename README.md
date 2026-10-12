@@ -1,8 +1,8 @@
 | Project | What it is | Status |
 |---|---|---|
 | [**EventHorizon Demand**](https://github.com/EventHorizon-ia/demand-m5) | Retail demand forecasting on the M5 benchmark | ✅ MVP technically validated · market validation ongoing |
-| [**EventHorizon Crypto**](https://github.com/EventHorizon-ia/crypto-h0-edge) | BTC/USDT short-horizon direction research | 🔎 Economic case study · economically unviable |
-| [**honest-validation-toolkit**](https://github.com/EventHorizon-ia/honest-validation-toolkit) | Open-source validation methods for time-series models | 🧪 Shared library |
+| [**EventHorizon Crypto**](https://github.com/EventHorizon-ia/crypto-h0-edge) | BTC/USDT short-horizon direction research |  Economic case study · economically unviable |
+| [**honest-validation-toolkit**](https://github.com/EventHorizon-ia/honest-validation-toolkit) | Open-source validation methods for time-series models |  Shared library |
 
 > **Technical validation and market validation are separate problems.**
 
@@ -30,8 +30,8 @@ justify a solution.
 
 | Product | Domain | Status | Honest Notes |
 |---|---|---|---|
-| **EventHorizon Crypto** | BTC/USDT 5-second direction | 🔎 Economic case study | Economically unviable under the evaluated execution assumptions; published as a complete negative-result case study |
-| **EventHorizon Demand** | Retail demand forecasting (M5 Walmart) | ✅ MVP technically validated · 🔎 Market validation ongoing | **31.03% overall WAPE** without `lag_365`; outperformed the naive lag-7 baseline in 7/7 stores | Current MVP result; legacy 30.93% WAPE retained only as historical context |
+| **EventHorizon Crypto** | BTC/USDT 5-second direction |  Economic case study | Economically unviable under the evaluated execution assumptions; published as a complete negative-result case study |
+| **EventHorizon Demand** | Retail demand forecasting (M5 Walmart) |  MVP technically validated ·  Market validation ongoing | **31.03% overall WAPE** without `lag_365`; outperformed the naive lag-7 baseline in 7/7 stores | Current MVP result; legacy 30.93% WAPE retained only as historical context |
 
 
 ---
@@ -84,7 +84,7 @@ at the price five seconds after the signal.
 Under the evaluated assumptions, the strategy was economically unviable.
 
 **Explore the public audit dashboard:**  
-👉 [EventHorizon Crypto Dashboard](https://eventhorizon-ia.github.io/trader-ai/dashboard-en.html)
+ [EventHorizon Crypto Dashboard](https://eventhorizon-ia.github.io/trader-ai/dashboard-en.html)
 
 **Research repository:** [crypto-h0-edge](https://github.com/EventHorizon-ia/crypto-h0-edge)
 
@@ -113,14 +113,14 @@ businesses where forecasting errors have meaningful operational consequences.
 
 We are investigating factors such as:
 
-- 📦 **Demand uncertainty**
-- 🌱 **Product perishability**
-- 🚚 **Replenishment time**
-- 💰 **Cost of overstock and stock-outs**
-- 📊 **Existing forecasting processes**
-- 🔁 **Historical feedback loops**
-- 📈 **Seasonality and demand peaks**
-- 🧮 **Magnitude and frequency of forecasting errors**
+-  **Demand uncertainty**
+-  **Product perishability**
+-  **Replenishment time**
+-  **Cost of overstock and stock-outs**
+-  **Existing forecasting processes**
+-  **Historical feedback loops**
+-  **Seasonality and demand peaks**
+-  **Magnitude and frequency of forecasting errors**
 
 The goal is not simply to find businesses where demand is difficult to predict.
 
@@ -138,10 +138,10 @@ rather than something assumed from model performance alone.
 
 The same validation principles protect every product we release:
 
-- ⏳ **Temporal validation** with embargo between training and evaluation
-- 🧩 **Block bootstrap** by date, respecting temporal and cross-sectional structure
-- 🔀 **Paired gap bootstrap** comparing the model against a baseline on the same days
-- 🔬 **Permutation testing** for classification problems
+-  **Temporal validation** with embargo between training and evaluation
+-  **Block bootstrap** by date, respecting temporal and cross-sectional structure
+-  **Paired gap bootstrap** comparing the model against a baseline on the same days
+-  **Permutation testing** for classification problems
 
 This pipeline has been extracted into a standalone open-source library:
 
@@ -165,10 +165,10 @@ This pipeline has been extracted into a standalone open-source library:
 
 | Principle | Description |
 |---|---|
-| 🔬 **Rigor over Hype** | Every result ships with documented limitations. |
-| 🧾 **Honesty over Marketing** | We publish failures as carefully as successes. |
-| 🛠️ **Evidence over Assumptions** | A technically strong model is not assumed to be a valuable product without market evidence. |
-| 🔍 **Research over Guesswork** | ICP, product scope, and positioning are refined through real-world observations. |
+|  **Rigor over Hype** | Every result ships with documented limitations. |
+|  **Honesty over Marketing** | We publish failures as carefully as successes. |
+|  **Evidence over Assumptions** | A technically strong model is not assumed to be a valuable product without market evidence. |
+|  **Research over Guesswork** | ICP, product scope, and positioning are refined through real-world observations. |
 
 ---
 
@@ -200,11 +200,11 @@ validation infrastructure to the audit tooling.
 
 | Resource | URL |
 |---|---|
-| 🚀 **EventHorizon-AI Hub** | [github.com/EventHorizon-ia/EventHorizon](https://github.com/EventHorizon-ia/EventHorizon) |
-| 📈 **Crypto Research** | [github.com/EventHorizon-ia/crypto-h0-edge](https://github.com/EventHorizon-ia/crypto-h0-edge) |
-| 📦 **Demand Research** | [github.com/EventHorizon-ia/demand-m5](https://github.com/EventHorizon-ia/demand-m5) |
-| 🧪 **Validation Toolkit** | [github.com/EventHorizon-ia/honest-validation-toolkit](https://github.com/EventHorizon-ia/honest-validation-toolkit) |
-| 🌐 **EventHorizon Crypto Audit Dashboard** | [eventhorizon-ia.github.io](https://eventhorizon-ia.github.io/trader-ai/dashboard-en.html) |
+|  **EventHorizon-AI Hub** | [github.com/EventHorizon-ia/EventHorizon](https://github.com/EventHorizon-ia/EventHorizon) |
+|  **Crypto Research** | [github.com/EventHorizon-ia/crypto-h0-edge](https://github.com/EventHorizon-ia/crypto-h0-edge) |
+|  **Demand Research** | [github.com/EventHorizon-ia/demand-m5](https://github.com/EventHorizon-ia/demand-m5) |
+|  **Validation Toolkit** | [github.com/EventHorizon-ia/honest-validation-toolkit](https://github.com/EventHorizon-ia/honest-validation-toolkit) |
+|  **EventHorizon Crypto Audit Dashboard** | [eventhorizon-ia.github.io](https://eventhorizon-ia.github.io/trader-ai/dashboard-en.html) |
 
 ---
 
