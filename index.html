@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f2ed">
+  <title>EventHorizon-AI — Independent Forecasting Research</title>
+  <meta name="description" content="Independent research and engineering for time-series forecasting, statistical validation, and reproducible machine learning. Proof, not promises.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="EventHorizon-AI — Proof, not promises">
+  <meta property="og:description" content="Forecasting systems, rigorous validation, and honest documentation of results and limitations.">
+  <meta property="og:url" content="https://eventhorizon-ia.github.io/trader-ai/index-en.html">
+  <meta property="og:image" content="https://eventhorizon-ia.github.io/trader-ai/og-image.png">
+  <link rel="canonical" href="https://eventhorizon-ia.github.io/trader-ai/index-en.html">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="shell nav-wrap">
+      <a class="wordmark" href="#top" aria-label="EventHorizon-AI home">
+        <svg class="brand-mark" viewBox="0 0 32 32" width="30" height="30" role="img" aria-label="EH monogram" focusable="false">
+          <rect x="1" y="1" width="30" height="30" rx="5" fill="#07090f" stroke="#343849" stroke-width=".75"/>
+          <path class="mark-e" d="M13 8H6.5V24H13 M6.5 16H12.5"/>
+          <path class="mark-h" d="M18 8V24 M18 16H25.5 M25.5 8V24"/>
+        </svg>
+        <span>eventhorizon<span class="wordmark-light"> / AI</span></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+        <span class="menu-lines" aria-hidden="true"></span><span class="sr-only">Toggle navigation</span>
+      </button>
+      <nav id="primary-nav" class="primary-nav" aria-label="Main navigation">
+        <a href="#research">Research</a>
+        <a href="#validation">Validation</a>
+        <a href="#toolkit">Open source</a>
+        <a href="#log">Research log</a>
+        <a class="nav-github" href="https://github.com/EventHorizon-ia/EventHorizon" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero shell" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot"></span> INDEPENDENT RESEARCH & ENGINEERING</p>
+        <h1>Building.<br><em>Testing.</em><br>Learning.</h1>
+        <p class="hero-lede">Developing forecasting systems with rigorous validation — and documenting both the results and the limitations.</p>
+        <div class="hero-actions">
+          <a class="button button-dark" href="#research">Explore the research <span aria-hidden="true">↓</span></a>
+          <a class="text-link" href="https://github.com/EventHorizon-ia/EventHorizon" target="_blank" rel="noopener noreferrer">Explore on GitHub <span aria-hidden="true">↗</span></a>
+        </div>
+        <p class="hero-note">No promises without evidence. No results without context.</p>
+      </div>
+      <div class="hero-visual" aria-label="Illustrative time-series signal and validation checkpoints">
+        <div class="visual-topline"><span>FIG. 01</span><span>RESEARCH SYSTEM / OVERVIEW</span></div>
+        <svg class="signal-plot" viewBox="0 0 560 300" role="img" aria-labelledby="plot-title plot-desc">
+          <title id="plot-title">Illustrative time-series signal</title>
+          <desc id="plot-desc">A conceptual line plot with a muted observed signal, a forecast segment, and a vertical evaluation boundary. This is not measured project data.</desc>
+          <defs>
+            <pattern id="grid" width="40" height="30" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 30" fill="none" stroke="#d8d9d3" stroke-width="1"/>
+            </pattern>
+          </defs>
+          <rect x="1" y="1" width="558" height="298" fill="url(#grid)"/>
+          <line x1="376" y1="12" x2="376" y2="282" stroke="#b2a99a" stroke-dasharray="4 5"/>
+          <path class="signal-path" d="M12 195 L35 174 L57 187 L78 141 L99 156 L122 119 L143 143 L165 98 L187 122 L207 91 L228 119 L249 78 L270 101 L292 66 L313 94 L334 70 L354 108 L375 87" fill="none" stroke="#53665d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path class="signal-forecast" d="M376 87 L397 104 L420 73 L443 88 L465 56 L488 69 L510 44 L540 52" fill="none" stroke="#b66a45" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 5"/>
+          <circle cx="376" cy="87" r="5" fill="#f3f2ed" stroke="#b66a45" stroke-width="2"/>
+          <text x="16" y="25" fill="#777b73" font-size="10" letter-spacing="1.4">OBSERVED SERIES</text>
+          <text x="390" y="25" fill="#a35d3b" font-size="10" letter-spacing="1.2">FORECAST*</text>
+          <text x="384" y="270" fill="#777b73" font-size="10">evaluation boundary</text>
+        </svg>
+        <div class="visual-caption"><span>* Conceptual illustration</span><span>Signal ≠ evidence</span></div>
+        <div class="visual-bottom">
+          <div><span class="mini-label">RESEARCH PRINCIPLE</span><strong>Measure twice. Claim once.</strong></div>
+          <div class="orbit" aria-hidden="true"><span></span><span></span><span></span><i></i></div>
+        </div>
+      </div>
+      <div class="hero-index"><span>01 — 05</span><span>RESEARCH THAT SHOWS ITS WORK</span></div>
+    </section>
+
+    <section class="ticker" aria-label="Research focus">
+      <div class="shell ticker-inner"><span>TIME-SERIES FORECASTING</span><b>·</b><span>STATISTICAL VALIDATION</span><b>·</b><span>REPRODUCIBLE ML</span><b>·</b><span>OPEN-SOURCE ENGINEERING</span></div>
+    </section>
+
+    <section class="section shell" id="research">
+      <div class="section-heading">
+        <div><p class="eyebrow">01 / RESEARCH & SYSTEMS</p><h2>Two problems.<br><em>One standard of evidence.</em></h2></div>
+        <p class="section-intro">Each system asks a different forecasting question. Both are documented with the same distinction in mind: a model result is not automatically a practical outcome.</p>
+      </div>
+
+      <article class="project project-crypto">
+        <div class="project-visual crypto-visual">
+          <div class="project-label"><span class="project-symbol">C/01</span><span>MARKET MICROSTRUCTURE</span></div>
+          <div class="crypto-chart" aria-label="Illustrative price movement, not actual market data">
+            <div class="chart-y"><span>↑</span><span>PRICE</span><span>↓</span></div>
+            <svg viewBox="0 0 420 180" role="img" aria-labelledby="crypto-title crypto-desc">
+              <title id="crypto-title">Conceptual short-horizon price path</title>
+              <desc id="crypto-desc">An illustrative zigzag price line showing why short-horizon directional prediction is challenging. It does not represent measured BTC/USDT prices.</desc>
+              <g stroke="#46544c" stroke-width="1" opacity=".35"><path d="M0 30H420M0 75H420M0 120H420M0 165H420"/><path d="M50 0V180M120 0V180M190 0V180M260 0V180M330 0V180M400 0V180"/></g>
+              <path class="price-path" d="M0 115 L23 95 L42 121 L64 81 L82 105 L104 65 L127 82 L147 51 L166 78 L187 40 L208 67 L229 58 L248 91 L269 71 L291 112 L312 88 L334 124 L353 101 L377 137 L400 115 L420 142" fill="none" stroke="#d4a17f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="0" y1="145" x2="420" y2="145" stroke="#f1e7dc" stroke-dasharray="3 5" opacity=".55"/>
+            </svg>
+            <span class="chart-foot">ILLUSTRATIVE SIGNAL · NOT MARKET DATA</span>
+          </div>
+          <div class="project-visual-foot"><span>BTC / USDT</span><span>5-SECOND HORIZON</span></div>
+        </div>
+        <div class="project-content">
+          <div class="project-kicker">SYSTEM 01 <span class="pill pill-warn">Negative economic result</span></div>
+          <h3>EventHorizon <em>Crypto</em></h3>
+          <p class="project-summary">Can very short-term price direction be predicted beyond a simple baseline — and does that signal survive execution costs?</p>
+          <div class="metric-row">
+            <div class="metric"><strong>≈60%</strong><span>Directional accuracy</span></div>
+            <div class="metric-divider"></div>
+            <div class="metric"><strong>≈52%</strong><span>Baseline reference</span></div>
+          </div>
+          <div class="context-line"><span class="context-icon">!</span><p><strong>What the result means:</strong> an experimental directional edge was observed at the 5-second horizon. It did <strong>not</strong> translate into economic viability under the evaluated exchange-fee assumptions.</p></div>
+          <dl class="project-details">
+            <div><dt>Approach</dt><dd>Short-horizon BTC/USDT directional classification; temporal evaluation and execution simulation.</dd></div>
+            <div><dt>Validation</dt><dd>Walk-forward checks, block bootstrap, paired gap analysis and permutation testing are documented in the project audit.</dd></div>
+            <div><dt>Limitations</dt><dd>Checkpoint selection and execution assumptions constrain interpretation. Queue position, partial fills and adverse selection were not fully modeled.</dd></div>
+          </dl>
+          <div class="project-links"><a href="https://github.com/EventHorizon-ia/crypto-h0-edge" target="_blank" rel="noopener noreferrer">Research repository <span>↗</span></a><a href="https://github.com/EventHorizon-ia/eventhorizon-crypto" target="_blank" rel="noopener noreferrer">System repository <span>↗</span></a><a href="dashboard-en.html">Audit dashboard <span>↗</span></a></div>
+        </div>
+      </article>
+
+      <article class="project project-demand">
+        <div class="project-visual demand-visual">
+          <div class="project-label"><span class="project-symbol">D/02</span><span>RETAIL DEMAND</span></div>
+          <div class="demand-graphic" data-model-wape="31.03" data-baseline-wape="44.4" data-chart-max="50">
+            <div class="demand-top"><span>FORECAST ERROR / WAPE</span><span>M5 · WALMART</span></div>
+            <div class="bar-comparison" role="img" aria-label="WAPE comparison: seasonal baseline 44.4%; EventHorizon Demand 31.03%; approximately 30.1% relative reduction compared with baseline.">
+              <div class="bar-row"><span>Seasonal baseline</span><strong data-wape-value="baseline">44.4%</strong><div class="bar-track"><span class="bar-fill" data-wape-bar="baseline" style="width:88.8%"></span></div></div>
+              <div class="bar-row"><span>EventHorizon Demand</span><strong data-wape-value="model">31.03%</strong><div class="bar-track bar-model"><span class="bar-fill" data-wape-bar="model" style="width:62.06%"></span></div></div>
+            </div>
+            <div class="improvement"><strong data-wape-reduction>≈30.1%</strong><span>relative WAPE reduction<br>vs. seasonal baseline</span></div>
+            <p class="chart-foot">DOCUMENTED BENCHMARK RESULT · NOT CUSTOMER OUTCOMES</p>
+          </div>
+          <div class="project-visual-foot"><span>LIGHTGBM</span><span>DAILY DEMAND FORECASTING</span></div>
+        </div>
+        <div class="project-content">
+          <div class="project-kicker">SYSTEM 02 <span class="pill pill-open">Technical benchmark</span></div>
+          <h3>EventHorizon <em>Demand</em></h3>
+          <p class="project-summary">Can machine learning improve daily retail demand forecasts over a seasonal baseline on a public benchmark?</p>
+          <div class="metric-row">
+            <div class="metric"><strong data-wape-value="model">31.03%</strong><span>Model WAPE</span></div>
+            <div class="metric-divider"></div>
+            <div class="metric"><strong data-wape-value="baseline">44.4%</strong><span>Seasonal baseline WAPE</span></div>
+          </div>
+          <div class="context-line context-positive"><span class="context-icon">↘</span><p><strong>What the result means:</strong> a <span data-wape-reduction>≈30.1%</span> relative reduction in WAPE, calculated from 31.03% versus the 44.4% seasonal baseline, on the M5 Walmart dataset. The project reports statistically significant improvement across 7 of 7 stores tested.</p></div>
+          <dl class="project-details">
+            <div><dt>Approach</dt><dd>LightGBM using historical sales and temporal, rolling, price and promotion features.</dd></div>
+            <div><dt>Validation</dt><dd>Temporal holdout, date-block bootstrap and paired comparison against a seasonal baseline.</dd></div>
+            <div><dt>Limitations</dt><dd>Benchmark performance is technical evidence, not proof of lower waste, higher profit or customer impact. Commercial validation remains open.</dd></div>
+          </dl>
+          <div class="project-links"><a href="https://github.com/EventHorizon-ia/demand-m5" target="_blank" rel="noopener noreferrer">Research repository <span>↗</span></a><a href="https://github.com/EventHorizon-ia/eventhorizon-demand" target="_blank" rel="noopener noreferrer">System repository <span>↗</span></a></div>
+        </div>
+      </article>
+      <p class="source-note">Metrics are reported experimental results from the project documentation. Values are rounded for readability; methodology, dataset and limitations should be reviewed before drawing conclusions.</p>
+    </section>
+
+    <section class="validation-section" id="validation">
+      <div class="shell validation-shell">
+        <div class="section-heading section-heading-light">
+          <div><p class="eyebrow">02 / VALIDATION ENGINEERING</p><h2>A result is only<br><em>the beginning.</em></h2></div>
+          <p class="section-intro">A useful forecast needs more than a strong score. The validation process asks whether the result holds up over time, how uncertain it is, and whether it matters outside the metric.</p>
+        </div>
+        <div class="validation-layout">
+          <div class="validation-steps" role="tablist" aria-label="Validation stages">
+            <button class="validation-step is-active" id="step-tab-1" role="tab" aria-selected="true" aria-controls="step-panel" data-step="0"><span>01</span><span><strong>Observe the result</strong><small>Compare against a baseline</small></span><span class="step-arrow">↗</span></button>
+            <button class="validation-step" id="step-tab-2" role="tab" aria-selected="false" aria-controls="step-panel" data-step="1"><span>02</span><span><strong>Respect time</strong><small>Walk-forward + embargo</small></span><span class="step-arrow">↗</span></button>
+            <button class="validation-step" id="step-tab-3" role="tab" aria-selected="false" aria-controls="step-panel" data-step="2"><span>03</span><span><strong>Quantify uncertainty</strong><small>Block and paired bootstrap</small></span><span class="step-arrow">↗</span></button>
+            <button class="validation-step" id="step-tab-4" role="tab" aria-selected="false" aria-controls="step-panel" data-step="3"><span>04</span><span><strong>Challenge the signal</strong><small>Permutation testing</small></span><span class="step-arrow">↗</span></button>
+            <button class="validation-step" id="step-tab-5" role="tab" aria-selected="false" aria-controls="step-panel" data-step="4"><span>05</span><span><strong>Test practical value</strong><small>Operational and market evidence</small></span><span class="step-arrow">↗</span></button>
+          </div>
+          <div class="validation-panel" id="step-panel" role="tabpanel" aria-labelledby="step-tab-1" tabindex="0">
+            <div class="panel-top"><span id="panel-index">STAGE 01 / 05</span><span class="panel-status"><i></i> METHOD OVERVIEW</span></div>
+            <div class="panel-graphic" aria-hidden="true">
+              <div class="sample-bars"><i style="height:36%"></i><i style="height:54%"></i><i style="height:45%"></i><i style="height:72%"></i><i style="height:61%"></i><i style="height:84%"></i><i style="height:68%"></i><i style="height:92%"></i><i style="height:74%"></i><i style="height:58%"></i><i style="height:80%"></i><i style="height:66%"></i></div>
+            </div>
+            <h3 id="panel-title">Start with a comparison.</h3>
+            <p id="panel-copy">A model score is hard to interpret in isolation. Compare it with a clearly defined baseline on aligned evaluation data before describing an improvement.</p>
+            <p class="panel-caveat" id="panel-caveat">A better score is an observation — not, by itself, proof of generalization or business value.</p>
+          </div>
+        </div>
+        <div class="validation-footnote"><span>THE PRINCIPLE</span><p>These methods help investigate specific failure modes. They do not automatically eliminate all bias or guarantee that a model will generalize.</p></div>
+      </div>
+    </section>
+
+    <section class="section shell toolkit-section" id="toolkit">
+      <div class="toolkit-mark" aria-hidden="true">
+        <div class="toolkit-grid"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="toolkit-stamp">OPEN<br>SOURCE</div>
+      </div>
+      <div class="toolkit-copy">
+        <p class="eyebrow">03 / REUSABLE INFRASTRUCTURE</p>
+        <h2>Honest Validation<br><em>Toolkit.</em></h2>
+        <p>A reusable Python library for investigating time-series model performance with methods designed to make comparisons and uncertainty more explicit.</p>
+        <ul class="tool-list">
+          <li><span>↳</span> Walk-forward validation</li>
+          <li><span>↳</span> Block bootstrap & paired gap bootstrap</li>
+          <li><span>↳</span> Permutation testing</li>
+          <li><span>↳</span> WAPE and MASE metrics</li>
+        </ul>
+        <a class="button button-dark" href="https://github.com/EventHorizon-ia/honest-validation-toolkit" target="_blank" rel="noopener noreferrer">Explore the toolkit <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="toolkit-aside"><span class="aside-index">TOOLING / 001</span><p>Built to make evaluation more inspectable — not to turn a statistical test into a guarantee.</p><a href="https://github.com/EventHorizon-ia/honest-validation-toolkit/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">View license <span aria-hidden="true">↗</span></a></div>
+    </section>
+
+    <section class="log-section" id="log">
+      <div class="shell">
+        <div class="section-heading">
+          <div><p class="eyebrow">04 / RESEARCH LOG</p><h2>Work in progress.<br><em>Evidence in public.</em></h2></div>
+          <p class="section-intro">A home for future experiments, technical notes, and post-mortems. No publications are listed here until they exist.</p>
+        </div>
+        <div class="log-empty">
+          <div class="log-empty-symbol" aria-hidden="true">＋</div>
+          <div><span class="mini-label">NEXT ENTRIES</span><h3>The log is being prepared.</h3><p>Future entries can document a question, dataset, method, result, and limitations — with links to code and reproducible artifacts where available.</p></div>
+          <a href="https://github.com/EventHorizon-ia/EventHorizon/issues" target="_blank" rel="noopener noreferrer">Follow project updates <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section shell" id="about">
+      <div class="about-label"><p class="eyebrow">05 / ABOUT</p><span class="about-line"></span><span class="about-coord">BRAZIL · INDEPENDENT</span></div>
+      <div class="about-copy"><h2>Curiosity is the start.<br><em>Evidence is the standard.</em></h2><p>EventHorizon-AI grew from hands-on exploration of machine learning into an independent research and engineering project. The work spans forecasting models, evaluation tooling, and the harder question of what results do — and do not — establish.</p><p>Built independently by Lucas, 14, in Brazil, the project is a place to learn in public, share useful tools, and document negative results as carefully as positive ones.</p><div class="about-principles"><span>01 / Rigor over hype</span><span>02 / Transparency over polish</span><span>03 / Reproducibility over assumption</span></div></div>
+    </section>
+
+    <section class="closing-band">
+      <div class="shell closing-inner"><p class="eyebrow">KEEP THE WORK OPEN</p><h2>Proof, not promises.</h2><p>Explore the code, read the limitations, and inspect the methods behind the results.</p><a class="button button-paper" href="https://github.com/EventHorizon-ia/EventHorizon" target="_blank" rel="noopener noreferrer">Visit the project hub <span aria-hidden="true">↗</span></a></div>
+      <div class="closing-orbit" aria-hidden="true"><span></span><span></span><span></span></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-top">
+      <a class="wordmark footer-wordmark" href="#top"><svg class="brand-mark" viewBox="0 0 32 32" width="30" height="30" role="img" aria-label="EH monogram" focusable="false">
+          <rect x="1" y="1" width="30" height="30" rx="5" fill="#07090f" stroke="#343849" stroke-width=".75"/>
+          <path class="mark-e" d="M13 8H6.5V24H13 M6.5 16H12.5"/>
+          <path class="mark-h" d="M18 8V24 M18 16H25.5 M25.5 8V24"/>
+        </svg><span>eventhorizon<span class="wordmark-light"> / AI</span></span></a>
+      <p>Independent forecasting research.<br>Results with context. Limitations in the open.</p>
+      <div class="footer-links">
+        <a href="https://github.com/EventHorizon-ia/EventHorizon" target="_blank" rel="noopener noreferrer">Project hub ↗</a>
+        <a href="https://github.com/EventHorizon-ia/crypto-h0-edge" target="_blank" rel="noopener noreferrer">Crypto research ↗</a>
+        <a href="https://github.com/EventHorizon-ia/demand-m5" target="_blank" rel="noopener noreferrer">Demand research ↗</a>
+        <a href="https://github.com/EventHorizon-ia/honest-validation-toolkit" target="_blank" rel="noopener noreferrer">Validation toolkit ↗</a>
+        <a href="https://eventhorizon-ia.github.io/trader-ai/dashboard-en.html">Crypto audit ↗</a>
+        <a href="https://www.tabnews.com.br/" target="_blank" rel="noopener noreferrer">TabNews ↗</a>
+      </div>
+    </div>
+    <div class="shell footer-bottom"><span>© <span id="year">2026</span> EventHorizon-AI</span><span>Forecasts are estimates, not guarantees. Crypto research is not investment advice.</span><a href="#top">Back to top ↑</a></div>
+  </footer>
+</body>
+</html>
