@@ -6,7 +6,6 @@
   const menuToggle = document.querySelector(".menu-toggle");
   const navigation = document.querySelector("#primary-nav");
 
-  // Mobile menu: keyboard-friendly and closed after navigation.
   if (menuToggle && navigation) {
     menuToggle.addEventListener("click", () => {
       const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
@@ -28,7 +27,6 @@
     });
   }
 
-  // Keep every displayed WAPE and derived comparison tied to the same source values.
   function updateDemandMetrics() {
     const chart = document.querySelector(".demand-graphic[data-model-wape][data-baseline-wape]");
     if (!chart) return;
@@ -112,7 +110,6 @@
     if (panelCopy) panelCopy.textContent = stage.copy;
     if (panelCaveat) panelCaveat.textContent = stage.caveat;
 
-    // Update existing bars so their height transitions are smooth without rebuilding the DOM.
     if (bars) {
       const existingBars = Array.from(bars.querySelectorAll("i"));
       stage.graphic.forEach((height, barIndex) => {
@@ -146,7 +143,6 @@
   const year = document.querySelector("#year");
   if (year) year.textContent = String(new Date().getFullYear());
 
-  // One subtle monogram glint; never a repeating animation.
   const headerMark = document.querySelector(".site-header .brand-mark");
   if (headerMark && !reduceMotion.matches) {
     requestAnimationFrame(() => {
@@ -155,7 +151,6 @@
     });
   }
 
-  // Progressive enhancement: if JS or IntersectionObserver is unavailable, content remains visible.
   let revealObserver = null;
   let motionTargets = [];
   let animatedPaths = [];
@@ -201,7 +196,7 @@
           motionTargets.push(svg);
         }
       } catch (_error) {
-        // A path that cannot report its length stays visible without a draw animation.
+        
       }
     });
 

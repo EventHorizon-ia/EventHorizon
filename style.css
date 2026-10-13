@@ -171,7 +171,6 @@ h2 { font-size: clamp(38px, 5vw, 60px); line-height: 1.08; margin-bottom: 0; }
 }
 
 
-/* Third-pass refinements: restrained brand accents and progressive enhancement. */
 .brand-mark.is-glowing { animation: monogram-flash 900ms ease-out 1; }
 @keyframes monogram-flash {
   0%, 100% { filter: drop-shadow(0 0 0 rgba(67,186,255,0)); }
@@ -184,7 +183,6 @@ h2 { font-size: clamp(38px, 5vw, 60px); line-height: 1.08; margin-bottom: 0; }
 .button:active { transform: translateY(0); }
 .project-links a:hover, .toolkit-aside a:hover, .log-empty > a:hover { color: var(--clay); border-color: var(--clay); }
 
-/* Reveal styles are enabled only after JS + IntersectionObserver initialize. */
 html.motion-ready .reveal-on-scroll {
   opacity: 0;
   transform: translateY(13px);
@@ -223,7 +221,6 @@ html.motion-ready .project.is-visible .bar-fill { transform: scaleX(1); }
   .sample-bars i, .metric strong, .improvement strong, a, button { transition: none !important; }
 }
 
-/* Brand accents are intentionally limited to the EH monogram and keyboard focus. */
 .brand-mark { transition: filter .28s ease, transform .28s ease; }
 .wordmark:hover .brand-mark { transform: translateY(-1px); }
 .brand-mark.is-glowing { animation: monogram-flash 900ms ease-out 1; }
