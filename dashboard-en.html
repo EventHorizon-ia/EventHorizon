@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#07090f">
+
+<title>Audit Dashboard — EventHorizon Crypto</title>
+
+<meta name="description" content="Static audit report of EventHorizon Crypto (BTC/USDT) training and validation results — accuracy by horizon, validation pipeline, and an honest note on economic viability.">
+
+<link rel="icon" href="data:,">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+
+
+  /* ============ TOKENS (shared with landing page) ============ */
+
+  :root{
+
+    --bg:        #07090f;
+
+    --surface:   #101219;
+
+    --surface-2: #171a23;
+
+    --border:    #282c37;
+
+    --border-hi: #414756;
+
+
+
+    --cyan:      #43baff;
+
+    --cyan-dim:  #238dcc;
+
+    --purple:    #9a72ff;
+
+    --amber:     #f59e0b;
+
+    --green:     #22c55e;
+
+    --red:       #ef4444;
+
+
+
+    --text:      #e9e9ea;
+
+    --text-dim:  #96979c;
+
+    --text-faint:#5c5e64;
+
+
+
+    --display: 'Manrope', 'DM Sans', system-ui, sans-serif;
+
+    --mono: 'DM Mono', 'SFMono-Regular', Menlo, monospace;
+
+    --body: 'DM Sans', system-ui, sans-serif;
+
+
+
+    --radius: 4px;
+
+    --wrap: 1120px;
+
+  }
+
+
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    font-family:var(--body);
+
+    line-height:1.6;
+
+    -webkit-font-smoothing:antialiased;
+
+  }
+
+  body::before{
+
+    content:"";
+
+    position:fixed; inset:0;
+
+    background:
+
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(154,114,255,.075), transparent 60%),
+
+      radial-gradient(ellipse 900px 600px at 90% 5%, rgba(67,186,255,.055), transparent 60%);
+
+    pointer-events:none;
+
+    z-index:0;
+
+  }
+
+  .wrap{ max-width:var(--wrap); margin:0 auto; padding:0 1.5rem; position:relative; z-index:1; }
+
+  a{ color:inherit; text-decoration:none; }
+
+  :focus-visible{ outline:2px solid var(--cyan); outline-offset:3px; }
+
+
+
+  h1,h2,h3,h4{ font-family:var(--display); letter-spacing:-0.02em; color:var(--text); }
+
+  .eyebrow{
+
+    font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
+
+    color:var(--cyan); display:flex; align-items:center; gap:.5rem; margin-bottom:1rem;
+
+  }
+
+  .eyebrow::before{ content:""; width:6px; height:6px; border-radius:50%; background:var(--cyan); box-shadow:0 0 5px rgba(67,186,255,.22); }
+
+
+
+  section{ position:relative; z-index:1; padding:4.5rem 0; }
+
+  section h2{ font-size:clamp(1.5rem,3vw,2.1rem); }
+
+  .section-sub{ color:var(--text-dim); max-width:640px; margin-top:.6rem; font-size:1rem; }
+
+
+
+  .pass-chip{
+
+    display:inline-flex; align-items:center; gap:.4rem;
+
+    font-family:var(--mono); font-size:.78rem; color:var(--green);
+
+    background:rgba(34,197,94,.08); border:1px solid rgba(34,197,94,.25);
+
+    padding:.3rem .65rem; border-radius:6px;
+
+  }
+
+  .pass-chip::before{ content:"✓"; font-weight:700; }
+
+
+
+  .btn{
+
+    display:inline-flex; align-items:center; gap:.55rem;
+
+    font-family:var(--mono); font-size:.85rem; font-weight:500;
+
+    padding:.85rem 1.4rem; border-radius:7px; border:1px solid transparent;
+
+    transition:transform .15s, filter .15s, border-color .15s;
+
+  }
+
+  .btn:hover{ transform:translateY(-1px); }
+
+  .btn-primary{ background:var(--cyan); color:#04141a; }
+
+  .btn-primary:hover{ filter:brightness(1.1); }
+
+  .btn-outline{ border-color:var(--border-hi); color:var(--text); }
+
+  .btn-outline:hover{ border-color:var(--cyan); color:var(--cyan); }
+
+
+
+  /* ============ NAVBAR (identical to landing page) ============ */
+
+  .navbar{
+
+    position:sticky; top:0; z-index:50;
+
+    background:rgba(10,10,10,.85); backdrop-filter:blur(10px);
+
+    border-bottom:1px solid var(--border);
+
+  }
+
+  .nav-content{ display:flex; align-items:center; justify-content:space-between; height:64px; }
+
+  .logo{ display:flex; align-items:center; gap:.55rem; font-family:var(--mono); font-weight:600; font-size:.95rem; letter-spacing:.03em; }
+
+  .brand-mark{ display:block; flex:0 0 auto; overflow:visible; border-radius:6px; }
+  .brand-mark .mark-e,.brand-mark .mark-h{ fill:none; stroke-width:2.1; stroke-linecap:round; stroke-linejoin:round; }
+  .brand-mark .mark-e{ stroke:var(--cyan); }
+  .brand-mark .mark-h{ stroke:var(--purple); }
+  .logo:hover .brand-mark{ filter:drop-shadow(0 0 3px rgba(67,186,255,.16)); }
+
+  .logo span.dim{ color:var(--text-dim); font-weight:400; }
+
+  .nav-links{ display:flex; align-items:center; gap:2rem; font-size:.9rem; color:var(--text-dim); }
+
+  .nav-links a:hover{ color:var(--text); }
+
+  .nav-cta{
+
+    font-family:var(--mono); font-size:.82rem; color:var(--bg) !important;
+
+    background:var(--cyan); padding:.5rem 1rem; border-radius:6px;
+
+    transition:filter .15s;
+
+  }
+
+  .nav-cta:hover{ filter:brightness(1.1); }
+
+
+
+  /* ============ PAGE HEADER ============ */
+
+  .page-header{ padding:3.6rem 0 2.6rem; border-bottom:1px solid var(--border); }
+
+  .page-header h1{ font-size:clamp(1.9rem,4vw,2.6rem); margin-bottom:.8rem; }
+
+  .page-header .section-sub{ max-width:680px; }
+
+  .header-meta{
+
+    display:flex; gap:1.6rem; flex-wrap:wrap; margin-top:1.6rem;
+
+    font-family:var(--mono); font-size:.78rem; color:var(--text-faint);
+
+  }
+
+  .header-meta strong{ color:var(--text-dim); font-weight:500; }
+
+
+
+  /* ============ METRIC CARDS ============ */
+
+  .metrics-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1.1rem; }
+
+  .metric-card{
+
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+
+    padding:1.5rem 1.4rem;
+
+  }
+
+  .metric-card .metric-label{ font-family:var(--mono); font-size:.72rem; letter-spacing:.04em; text-transform:uppercase; color:var(--text-faint); margin-bottom:.6rem; }
+
+  .metric-card .metric-value{ font-family:var(--display); font-size:2.1rem; font-weight:700; line-height:1; }
+
+  .metric-card .metric-value.cyan{ color:var(--cyan); }
+
+  .metric-card .metric-value.purple{ color:var(--purple); }
+
+  .metric-card .metric-value.green{ color:var(--green); }
+
+  .metric-card .metric-sub{ font-size:.8rem; color:var(--text-dim); margin-top:.5rem; }
+
+
+
+  /* ============ PERFORMANCE TABLE ============ */
+
+  .perf-table-wrap{
+
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+
+    overflow:hidden; margin-top:1rem;
+
+  }
+
+  table{ width:100%; border-collapse:collapse; }
+
+  thead th{
+
+    text-align:left; font-family:var(--mono); font-size:.72rem; letter-spacing:.06em; text-transform:uppercase;
+
+    color:var(--text-faint); padding:1rem 1.3rem; border-bottom:1px solid var(--border); font-weight:500;
+
+  }
+
+  tbody td{ padding:1rem 1.3rem; border-bottom:1px solid var(--border); font-size:.9rem; vertical-align:middle; }
+
+  tbody tr:last-child td{ border-bottom:none; }
+
+  tbody tr.highlight{ background:rgba(6,182,212,.05); }
+
+  tbody tr.nodata td{ color:var(--text-faint); }
+
+  .horizon-cell{ font-family:var(--mono); font-weight:600; }
+
+  .acc-cell{ font-family:var(--mono); font-weight:600; white-space:nowrap; }
+
+  .acc-cell.reported{ color:var(--cyan); }
+
+  .acc-cell.flat{ color:var(--text-dim); }
+
+  .bar-cell{ width:40%; }
+
+  .bar-track{
+
+    position:relative; height:8px; background:var(--surface-2); border-radius:4px; overflow:visible;
+
+    border:1px solid var(--border);
+
+  }
+
+  .bar-fill{ position:absolute; top:0; left:0; height:100%; border-radius:4px; background:var(--text-faint); }
+
+  .bar-fill.reported{ background:linear-gradient(90deg,var(--cyan),var(--purple)); }
+
+  .baseline-mark{
+
+    position:absolute; top:-3px; bottom:-3px; width:2px; background:var(--amber); opacity:.8;
+
+  }
+
+  .table-legend{ display:flex; gap:1.6rem; flex-wrap:wrap; margin-top:1rem; font-size:.8rem; color:var(--text-faint); font-family:var(--mono); }
+
+  .table-legend span{ display:inline-flex; align-items:center; gap:.4rem; }
+
+  .legend-swatch{ width:10px; height:10px; border-radius:2px; display:inline-block; }
+
+
+
+  /* ============ VALIDATION PIPELINE (reused pattern) ============ */
+
+  .pipeline-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:1rem; margin-top:2.4rem; }
+
+  .pipeline-step{
+
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+
+    padding:1.4rem 1.2rem;
+
+  }
+
+  .pipeline-step .step-index{ font-family:var(--mono); font-size:.7rem; color:var(--purple); margin-bottom:.7rem; display:block; }
+
+  .pipeline-step h4{ font-size:.95rem; margin-bottom:.45rem; }
+
+  .pipeline-step p{ font-size:.82rem; color:var(--text-dim); }
+
+
+
+  /* ============ HONEST NOTE ============ */
+
+  .honest-section{ border-top:1px solid var(--border); }
+
+  .honest-box{
+
+    background:rgba(245,158,11,.06); border:1px solid rgba(245,158,11,.3);
+
+    border-radius:var(--radius); padding:2rem 2.2rem; display:flex; gap:1.3rem; align-items:flex-start;
+
+  }
+
+  .honest-box .icon{ font-size:1.6rem; line-height:1; flex-shrink:0; margin-top:.15rem; }
+
+  .honest-box h3{ color:var(--amber); font-size:1.15rem; margin-bottom:.6rem; }
+
+  .honest-box p{ color:var(--text-dim); font-size:.94rem; margin-bottom:.6rem; }
+
+  .honest-box p:last-child{ margin-bottom:0; }
+
+  .honest-box strong{ color:var(--text); }
+
+  .honest-verdict{
+
+    margin-top:1rem; padding-top:1rem; border-top:1px dashed rgba(245,158,11,.3);
+
+    font-family:var(--mono); font-size:.85rem; display:flex; gap:2rem; flex-wrap:wrap;
+
+  }
+
+  .honest-verdict div span.k{ display:block; color:var(--text-faint); font-size:.7rem; text-transform:uppercase; letter-spacing:.05em; margin-bottom:.3rem; }
+
+  .honest-verdict div span.v{ color:var(--text); }
+
+  .honest-verdict .v.neg{ color:var(--red); }
+
+  .honest-verdict .v.pos{ color:var(--green); }
+
+
+
+  /* ============ FOOTER (identical to landing page) ============ */
+
+  footer{ border-top:1px solid var(--border); padding:3rem 0 2.2rem; }
+
+  .footer-grid{ display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:2rem; }
+
+  .footer-brand p{ color:var(--text-faint); font-size:.85rem; margin-top:.4rem; }
+
+  .footer-links{ display:flex; gap:1.8rem; flex-wrap:wrap; font-size:.88rem; color:var(--text-dim); }
+
+  .footer-links a:hover{ color:var(--cyan); }
+
+  .footer-bottom{ margin-top:2.4rem; padding-top:1.6rem; border-top:1px solid var(--border); font-size:.8rem; color:var(--text-faint); display:flex; justify-content:space-between; flex-wrap:wrap; gap:.6rem; }
+
+
+
+  /* ============ RESPONSIVE ============ */
+
+  @media (max-width:860px){
+
+    .metrics-grid{ grid-template-columns:1fr 1fr; }
+
+    .pipeline-grid{ grid-template-columns:1fr 1fr; }
+
+    .nav-links{ gap:1.1rem; font-size:.82rem; }
+
+    .nav-links{ width:100%; overflow-x:auto; padding-bottom:.35rem; white-space:nowrap; scrollbar-width:thin; }
+
+    .bar-cell{ width:30%; }
+
+  }
+
+  @media (max-width:640px){
+
+    thead{ display:none; }
+
+    table, tbody, tr, td{ display:block; width:100%; }
+
+    tbody tr{ padding:1rem 1.3rem; }
+
+    tbody td{ border:none; padding:.35rem 0; display:flex; justify-content:space-between; gap:1rem; }
+
+    tbody td.bar-cell{ display:block; padding-top:.6rem; }
+
+    tbody td::before{ content:attr(data-label); font-family:var(--mono); font-size:.7rem; color:var(--text-faint); text-transform:uppercase; }
+
+    tbody tr:not(:last-child){ border-bottom:1px solid var(--border); }
+
+  }
+
+  @media (max-width:520px){
+
+    section{ padding:3rem 0; }
+
+    .metrics-grid{ grid-template-columns:1fr; }
+
+    .pipeline-grid{ grid-template-columns:1fr; }
+
+    .honest-box{ flex-direction:column; padding:1.5rem; }
+
+    .footer-bottom{ flex-direction:column; }
+
+  }
+
+
+
+  /* Brand-aligned refinements and progressive motion. All content is visible by default. */
+  html{ scroll-padding-top:82px; }
+  .skip-link{ position:absolute; left:1rem; top:-4rem; z-index:100; padding:.65rem .9rem; background:#07090f; color:#fff; border:1px solid var(--cyan); border-radius:4px; }
+  .skip-link:focus{ top:.8rem; }
+  .logo{ gap:.7rem; letter-spacing:.02em; }
+  .logo span.dim{ font-size:.83em; color:#aaa9bc; }
+  .navbar{ background:rgba(7,9,15,.92); }
+  :focus-visible{ outline:2px solid var(--cyan); outline-offset:4px; }
+  .eyebrow::before{ box-shadow:none; }
+  .metric-card,.pipeline-step,.perf-table-wrap,.honest-box{ transition:transform .22s ease,border-color .22s ease,background-color .22s ease,box-shadow .22s ease; }
+  .metric-card:hover,.pipeline-step:hover{ transform:translateY(-2px); border-color:var(--border-hi); }
+  .metric-card .metric-value{ letter-spacing:-.045em; }
+  .bar-fill{ transform-origin:left center; transition:transform .8s cubic-bezier(.2,.7,.2,1),opacity .25s ease; }
+  .pipeline-step .step-index{ color:var(--purple); }
+  .pipeline-step{ min-height:190px; }
+  .audit-note{ margin-top:1rem; padding:1rem 1.1rem; border-left:2px solid var(--purple); background:rgba(154,114,255,.055); color:var(--text-dim); font-size:.82rem; line-height:1.75; }
+  .method-source{ margin-top:1.25rem; color:var(--text-faint); font-size:.82rem; }
+  .method-source a{ color:var(--cyan); text-decoration:underline; text-underline-offset:3px; }
+  .honest-box{ background:rgba(245,158,11,.045); }
+  .honest-verdict{ column-gap:2.25rem; row-gap:1rem; }
+  .honest-verdict .v{ font-size:.8rem; line-height:1.55; max-width:260px; }
+  footer .brand-mark{ width:28px; height:28px; }
+  footer .logo{ font-size:.9rem; }
+  footer .footer-links a{ transition:color .2s ease; }
+  footer .footer-links a:focus-visible,footer .footer-links a:hover{ color:var(--cyan); }
+  .brand-mark.is-glowing{ animation:monogram-flash 850ms ease-out 1; }
+  @keyframes monogram-flash{
+    0%,100%{filter:drop-shadow(0 0 0 rgba(67,186,255,0));}
+    40%{filter:drop-shadow(0 0 3px rgba(67,186,255,.4)) drop-shadow(0 0 4px rgba(154,114,255,.2));}
+  }
+  /* Reveal classes only hide items after JS confirms IntersectionObserver is available. */
+  html.motion-ready .reveal-on-scroll{ opacity:0; transform:translateY(12px); }
+  html.motion-ready .reveal-on-scroll.is-visible{ opacity:1; transform:translateY(0); }
+  html.motion-ready .perf-table-wrap .bar-fill{ transform:scaleX(0); }
+  html.motion-ready .perf-table-wrap.is-visible .bar-fill{ transform:scaleX(1); }
+  .metric-card:nth-child(2),.pipeline-step:nth-child(2){ transition-delay:40ms; }
+  .metric-card:nth-child(3),.pipeline-step:nth-child(3){ transition-delay:80ms; }
+  .metric-card:nth-child(4),.pipeline-step:nth-child(4){ transition-delay:120ms; }
+  @media(max-width:860px){ .pipeline-step{ min-height:0; } }
+  @media(max-width:640px){
+    .nav-content{ min-height:64px; height:auto; align-items:flex-start; flex-direction:column; padding-top:.8rem; padding-bottom:.6rem; gap:.7rem; }
+    .nav-links{ gap:1.2rem; font-size:.8rem; }
+    .page-header{ padding-top:2.6rem; }
+    .header-meta{ gap:.7rem 1.2rem; }
+    .audit-note{ font-size:.78rem; }
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{ scroll-behavior:auto !important; }
+    *,*::before,*::after{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+    html.motion-ready .reveal-on-scroll{ opacity:1 !important; transform:none !important; }
+    html.motion-ready .perf-table-wrap .bar-fill{ transform:none !important; }
+  }
+
+</style>
+
+</head>
+
+<body>
+
+
+
+<!-- ══ NAVBAR ══ -->
+
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="navbar" aria-label="Primary navigation">
+  <div class="wrap nav-content">
+    <a href="index-en.html#top" class="logo" aria-label="EventHorizon-AI home">
+        <svg class="brand-mark" viewBox="0 0 32 32" width="30" height="30" role="img" aria-label="EH monogram" focusable="false">
+          <rect x="1" y="1" width="30" height="30" rx="5" fill="#07090f" stroke="#343849" stroke-width=".75"/>
+          <path class="mark-e" d="M13 8H6.5V24H13 M6.5 16H12.5"/>
+          <path class="mark-h" d="M18 8V24 M18 16H25.5 M25.5 8V24"/>
+        </svg>
+        <span>EVENTHORIZON<span class="dim"> / CRYPTO</span></span>
+      </a>
+    <div class="nav-links">
+      <a href="index-en.html#research">AI research</a>
+      <a href="#performance">Performance</a>
+      <a href="#validation-methods">Methods</a>
+      <a href="https://github.com/EventHorizon-ia/EventHorizon-Crypto" target="_blank" rel="noopener noreferrer">Source code <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</nav>
+
+
+
+<!-- ══ PAGE HEADER ══ -->
+
+<main id="main">
+<header class="page-header" id="top">
+
+  <div class="wrap">
+
+    <div class="eyebrow">Audit Dashboard · EventHorizon Crypto</div>
+
+    <h1>Training &amp; validation results</h1>
+
+    <p class="section-sub">
+
+      A static report of the results obtained during training and walk-forward validation of the EventHorizon Crypto model (BTC/USDT). No live feed, no external data dependency — every number here is embedded directly in this page.
+
+    </p>
+
+    <div class="header-meta">
+
+      <span><strong>Model:</strong> Transformer + BiLSTM, 14 features (as reported)</span>
+
+      <span><strong>Training window:</strong> 365 days (2025–2026; dashboard-reported)</span>
+
+      <span><strong>Validation window:</strong> 90 days (dashboard-reported; not an untouched test)</span>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+
+<!-- ══ METRIC CARDS ══ -->
+
+<section>
+
+  <div class="wrap">
+
+    <div class="metrics-grid">
+
+      <div class="metric-card">
+
+        <div class="metric-label">Mean of displayed horizons (5s–1h)</div>
+
+        <div class="metric-value">51.5%</div>
+
+        <div class="metric-sub">Calculated from the 8 table values; run-level mean needs reconciliation</div>
+
+      </div>
+
+      <div class="metric-card">
+
+        <div class="metric-label">Best horizon</div>
+
+        <div class="metric-value cyan">5s</div>
+
+        <div class="metric-sub">Dashboard-reported best validation epoch; not an independent test</div>
+
+      </div>
+
+      <div class="metric-card">
+
+        <div class="metric-label">Observed difference at 5s</div>
+
+        <div class="metric-value purple">+8.5 pp</div>
+
+        <div class="metric-sub">60.5% vs. 52% reference; significance not independently reproduced</div>
+
+      </div>
+
+      <div class="metric-card">
+
+        <div class="metric-label">Validation samples</div>
+
+        <div class="metric-value purple">~1.5M</div>
+
+        <div class="metric-sub">Dashboard-reported count; confirm against the run log</div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ══ PERFORMANCE TABLE ══ -->
+
+<section id="performance">
+
+  <div class="wrap">
+
+    <div class="eyebrow">Performance by horizon</div>
+
+    <h2>Accuracy at best validation epoch</h2>
+
+    <p class="section-sub">The amber marker is the 52% reference used in the supplied dashboard; the baseline definition should be checked against the source run configuration. Accuracy above this reference is descriptive. Statistical significance depends on the original test configuration, intervals and model-selection procedure.</p>
+
+
+
+    <div class="perf-table-wrap">
+
+      <table aria-label="Directional accuracy by prediction horizon">
+
+        <thead>
+
+          <tr>
+
+            <th>Horizon</th>
+
+            <th>Accuracy</th>
+
+            <th class="bar-cell">vs. baseline (52%)</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr class="highlight">
+
+            <td class="horizon-cell" data-label="Horizon">5s</td>
+
+            <td class="acc-cell reported" data-label="Accuracy">60.5%</td>
+
+            <td class="bar-cell" data-label="vs. baseline">
+
+              <div class="bar-track" aria-hidden="true"><div class="bar-fill reported" style="width:86.4%"></div><div class="baseline-mark" style="left:74.3%"></div></div>
+
+            </td>
+
+          </tr>
+
+          <tr>
+
+            <td class="horizon-cell" data-label="Horizon">15s</td>
+
+            <td class="acc-cell flat" data-label="Accuracy">52.4%</td>
+
+            <td class="bar-cell" data-label="vs. baseline">
+
+              <div class="bar-track" aria-hidden="true"><div class="bar-fill" style="width:74.9%"></div><div class="baseline-mark" style="left:74.3%"></div></div>
+
+            </td>
+
+          </tr>
+
+          <tr>
+
+            <td class="horizon-cell" data-label="Horizon">30s</td>
+
+            <td class="acc-cell flat" data-label="Accuracy">48.0%</td>
+
+            <td class="bar-cell" data-label="vs. baseline">
+
+              <div class="bar-track" aria-hidden="true"><div class="bar-fill" style="width:68.6%"></div><div class="baseline-mark" style="left:74.3%"></div></div>
+
+            </td>
+
+          </tr>
+
+          <tr>
+
+            <td class="horizon-cell" data-label="Horizon">1min</td>
+
+            <td class="acc-cell flat" data-label="Accuracy">50.0%</td>
+
+            <td class="bar-cell" data-label="vs. baseline">
+
+              <div class="bar-track" aria-hidden="true"><div class="bar-fill" style="width:71.4%"></div><div class="baseline-mark" style="left:74.3%"></div></div>
+
+            </td>
+
+          </tr>
+
+          <tr>
+
+            <td class="horizon-cell" data-label="Horizon">5min</td>
+
+            <td class="acc-cell flat" data-label="Accuracy">50.2%</td>
+
+            <td class="bar-cell" data-label="vs. baseline">
+
+              <div class="bar-track" aria-hidden="true"><div class="bar-fill" style="width:71.7%"></div><div class="baseline-mark" style="left:74.3%"></div></div>
+
+            </td>
+
+          </tr>
+
+          <tr>
+
+            <td class="horizon-cell" data-label="Horizon">15min</td>
+
+            <td class="acc-cell flat" data-label="Accuracy">49.8%</td>
+
+            <td class="bar-cell" data-label="vs. baseline">
+
+              <div class="bar-track" aria-hidden="true"><div class="bar-fill" style="width:71.1%"></div><div class="baseline-mark" style="left:74.3%"></div></div>
+
+            </td>
+
+          </tr>
+
+          <tr>
+
+            <td class="horizon-cell" data-label="Horizon">30min</td>
+
+            <td class="acc-cell flat" data-label="Accuracy">50.5%</td>
+
+            <td class="bar-cell" data-label="vs. baseline">
+
+              <div class="bar-track" aria-hidden="true"><div class="bar-fill" style="width:72.1%"></div><div class="baseline-mark" style="left:74.3%"></div></div>
+
+            </td>
+
+          </tr>
+
+          <tr>
+
+            <td class="horizon-cell" data-label="Horizon">1h</td>
+
+            <td class="acc-cell flat" data-label="Accuracy">50.5%</td>
+
+            <td class="bar-cell" data-label="vs. baseline">
+
+              <div class="bar-track" aria-hidden="true"><div class="bar-fill" style="width:72.1%"></div><div class="baseline-mark" style="left:74.3%"></div></div>
+
+            </td>
+
+          </tr>
+
+          <tr>
+
+            <td class="horizon-cell" data-label="Horizon">5h</td>
+
+            <td class="acc-cell flat" data-label="Accuracy">54.0%</td>
+
+            <td class="bar-cell" data-label="vs. baseline">
+
+              <div class="bar-track" aria-hidden="true"><div class="bar-fill" style="width:77.1%"></div><div class="baseline-mark" style="left:74.3%"></div></div>
+
+            </td>
+
+          </tr>
+
+          <tr class="nodata">
+
+            <td class="horizon-cell" data-label="Horizon">1d</td>
+
+            <td class="acc-cell" data-label="Accuracy">— no data</td>
+
+            <td class="bar-cell" data-label="vs. baseline">
+
+              <div class="bar-track" aria-hidden="true"></div>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <div class="table-legend">
+
+      <span><span class="legend-swatch" style="background:linear-gradient(90deg,var(--cyan),var(--purple));"></span> 5s row highlighted in the supplied report; significance not independently reproduced</span>
+
+      <span><span class="legend-swatch" style="background:var(--text-faint);"></span> No independently confirmed edge in this summary</span>
+
+      <span><span class="legend-swatch" style="background:var(--amber);"></span> 52% reference marker (source run should confirm the baseline)</span>
+
+    </div>
+      <p class="audit-note">Arithmetic check: the eight displayed values from 5s to 1h average 51.5% (rounded to one decimal). The public project README separately reports 51.2% mean honest-validation accuracy for a multi-horizon model and 60.7% for an H0-focused model; the exact run mapping behind this page’s 50.7% / 60.5% figures was not supplied. The summary therefore keeps the displayed horizon scores but flags that run-level reconciliation is needed.</p>
+
+  </div>
+
+</section>
+
+
+
+<!-- ══ VALIDATION PIPELINE ══ -->
+
+<section id="validation-methods">
+
+  <div class="wrap">
+
+    <div class="eyebrow">Methodology applied</div>
+
+    <h2>Validation pipeline</h2>
+
+    <p class="section-sub">The supplied dashboard reports 60.5% at 5s. Public project summaries document several validation methods, but they do not provide enough run-level output to independently reproduce the exact result or assert that this selected checkpoint passed every test.</p>
+
+
+
+    <div class="pipeline-grid">
+
+      <div class="pipeline-step">
+
+        <span class="step-index">01</span>
+
+        <h4>Walk-forward & embargo</h4>
+
+        <p>The public README documents walk-forward analysis and an embargo between training and evaluation. Exact fold boundaries and gap length for the displayed run are not included here.</p>
+
+      </div>
+
+      <div class="pipeline-step">
+
+        <span class="step-index">02</span>
+
+        <h4>Block bootstrap</h4>
+
+        <p>Block bootstrap is documented for uncertainty estimation. Block lengths, replicate count, interval endpoints and the run log are not exposed in this static page.</p>
+
+      </div>
+
+      <div class="pipeline-step">
+
+        <span class="step-index">03</span>
+
+        <h4>Permutation test</h4>
+
+        <p>The documented pipeline includes permutation testing with shuffled targets and aligned masks. The null design, repetitions and p-value for the exact 60.5% result are not provided here.</p>
+
+      </div>
+
+      <div class="pipeline-step">
+
+        <span class="step-index">04</span>
+
+        <h4>Gap bootstrap</h4>
+
+        <p>Public project documentation describes a paired gap bootstrap comparing model and baseline. The exact paired inputs and result for this dashboard’s run cannot be confirmed from the public summary.</p>
+
+      </div>
+
+      <div class="pipeline-step">
+
+        <span class="step-index">05</span>
+
+        <h4>Temporal stability</h4>
+
+        <p>Temporal-stability analysis across partitions is described in the research README. The 15-day partition width and per-partition outputs shown in the old copy are not corroborated by that summary.</p>
+
+      </div>
+
+    </div>
+
+  <p class="method-source">Method summary checked against the public research records: <a href="https://github.com/EventHorizon-ia/crypto-h0-edge" target="_blank" rel="noopener noreferrer">Crypto H0 Edge research repository</a> and <a href="https://github.com/EventHorizon-ia/EventHorizon-Crypto" target="_blank" rel="noopener noreferrer">EventHorizon Crypto README</a>. These summaries document methods and limitations but do not expose every run-level interval, p-value, block setting or per-tier PnL result.</p>
+
+    </div>
+
+</section>
+
+
+
+
+
+<!-- ══ HONEST NOTE ══ -->
+
+<section class="honest-section">
+
+  <div class="wrap">
+
+    <div class="eyebrow">Evidence & limitations</div>
+
+    <h2>Reported validation result, negative economic outcome</h2>
+
+    <div class="honest-box" style="margin-top:1.6rem;">
+
+      <span class="icon">⚠️</span>
+
+      <div>
+
+        <h3>Promising validation signal; tradability not established</h3>
+
+        <p>The supplied dashboard reports <strong>60.5% accuracy at 5 seconds against its 52% reference (+8.5 percentage points)</strong>. Public research summaries report 60.7% for an H0-focused model and 59.9% for H0 in a multi-horizon model. They also state that the validation set was used for checkpoint selection, not as a final independent test. The exact 60.5% run and its p-value / confidence interval remain unverified from the public summary.</p>
+
+        <p>The project README reports that the strategy was <strong>economically unviable under the tested maker-execution assumptions</strong>, and that maker-fee sensitivity was evaluated separately. The public summary does not establish the old page’s more specific claim that net PnL was negative across every Binance VIP fee tier; that tier-by-tier statement should be checked against the underlying result files before being restored.</p>
+
+        <p>These findings are historical and specific to the evaluated data, checkpoint and execution assumptions. Validation does not guarantee future performance, and a positive classification metric is not evidence of profitability.</p>
+
+        <div class="honest-verdict">
+
+          <div><span class="k">Validation evidence</span><span class="v">Reported; exact run not reconciled</span></div>
+
+          <div><span class="k">Economic study</span><span class="v neg">Negative under tested assumptions</span></div>
+
+          <div><span class="k">Final out-of-sample edge</span><span class="v neg">Not established</span></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+</main>
+
+<!-- ══ FOOTER ══ -->
+
+<footer>
+
+  <div class="wrap">
+
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+
+        <a href="index-en.html#top" class="logo" aria-label="EventHorizon-AI home">
+          <svg class="brand-mark" viewBox="0 0 32 32" width="30" height="30" role="img" aria-label="EH monogram" focusable="false">
+            <rect x="1" y="1" width="30" height="30" rx="5" fill="#07090f" stroke="#343849" stroke-width=".75"/>
+            <path class="mark-e" d="M13 8H6.5V24H13 M6.5 16H12.5"/>
+            <path class="mark-h" d="M18 8V24 M18 16H25.5 M25.5 8V24"/>
+          </svg>
+          <span>EVENTHORIZON<span class="dim"> / CRYPTO</span></span>
+        </a>
+
+        <p>Temporal AI research &amp; forecasting systems.</p>
+
+      </div>
+
+      <div class="footer-links">
+
+        <a href="https://github.com/EventHorizon-ia/EventHorizon" target="_blank" rel="noopener">GitHub Hub</a>
+
+        <a href="https://github.com/EventHorizon-ia/EventHorizon-Crypto" target="_blank" rel="noopener">Crypto (prod)</a>
+
+        <a href="https://github.com/EventHorizon-ia/EventHorizon-Demand" target="_blank" rel="noopener">Demand (prod)</a>
+
+        <a href="https://github.com/EventHorizon-ia/honest-validation-toolkit" target="_blank" rel="noopener">Validation Toolkit</a>
+
+        <a href="https://www.tabnews.com.br/" target="_blank" rel="noopener">TabNews</a>
+
+        <a href="index-en.html#research">Research</a>
+
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+      <span>Historical validation is not a guarantee of future performance and does not by itself establish economic viability. Not investment advice.</span>
+
+      <span>&copy; 2026 EventHorizon-AI</span>
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+
+
+<script>
+(() => {
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion || !('IntersectionObserver' in window)) return;
+
+  const targets = document.querySelectorAll('.metric-card, .pipeline-step, .honest-box, .perf-table-wrap');
+  if (!targets.length) return;
+
+  const observer = new IntersectionObserver((entries, instance) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      entry.target.classList.add('is-visible');
+      instance.unobserve(entry.target);
+    }
+  }, { threshold: 0.12, rootMargin: '0px 0px -24px 0px' });
+
+  targets.forEach((target) => {
+    target.classList.add('reveal-on-scroll');
+    observer.observe(target);
+  });
+  // Enable the hide/reveal CSS only after all targets are registered.
+  document.documentElement.classList.add('motion-ready');
+
+  const mark = document.querySelector('.brand-mark');
+  if (mark) {
+    mark.classList.add('is-glowing');
+    mark.addEventListener('animationend', () => mark.classList.remove('is-glowing'), { once: true });
+  }
+})();
+</script>
+
+</body>
+
+</html>
