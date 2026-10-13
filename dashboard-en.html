@@ -27,8 +27,8 @@
 
 
 
-  /* ============ TOKENS (shared with landing page) ============ */
-
+  /* tokens   */
+  
   :root{
 
     --bg:        #07090f;
@@ -187,7 +187,7 @@
 
 
 
-  /* ============ NAVBAR (identical to landing page) ============ */
+  /*navbar   */
 
   .navbar{
 
@@ -229,7 +229,7 @@
 
 
 
-  /* ============ PAGE HEADER ============ */
+  /* page header*/
 
   .page-header{ padding:3.6rem 0 2.6rem; border-bottom:1px solid var(--border); }
 
@@ -249,7 +249,7 @@
 
 
 
-  /* ============ METRIC CARDS ============ */
+  /*metric cars. */
 
   .metrics-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1.1rem; }
 
@@ -275,7 +275,7 @@
 
 
 
-  /* ============ PERFORMANCE TABLE ============ */
+  /* performance table */
 
   .perf-table-wrap{
 
@@ -359,7 +359,7 @@
 
 
 
-  /* ============ HONEST NOTE ============ */
+  /* honest note */
 
   .honest-section{ border-top:1px solid var(--border); }
 
@@ -399,7 +399,7 @@
 
 
 
-  /* ============ FOOTER (identical to landing page) ============ */
+  /* footer  */
 
   footer{ border-top:1px solid var(--border); padding:3rem 0 2.2rem; }
 
@@ -415,7 +415,7 @@
 
 
 
-  /* ============ RESPONSIVE ============ */
+  /*responsive  */
 
   @media (max-width:860px){
 
@@ -465,7 +465,7 @@
 
 
 
-  /* Brand-aligned refinements and progressive motion. All content is visible by default. */
+ 
   html{ scroll-padding-top:82px; }
   .skip-link{ position:absolute; left:1rem; top:-4rem; z-index:100; padding:.65rem .9rem; background:#07090f; color:#fff; border:1px solid var(--cyan); border-radius:4px; }
   .skip-link:focus{ top:.8rem; }
@@ -495,7 +495,6 @@
     0%,100%{filter:drop-shadow(0 0 0 rgba(67,186,255,0));}
     40%{filter:drop-shadow(0 0 3px rgba(67,186,255,.4)) drop-shadow(0 0 4px rgba(154,114,255,.2));}
   }
-  /* Reveal classes only hide items after JS confirms IntersectionObserver is available. */
   html.motion-ready .reveal-on-scroll{ opacity:0; transform:translateY(12px); }
   html.motion-ready .reveal-on-scroll.is-visible{ opacity:1; transform:translateY(0); }
   html.motion-ready .perf-table-wrap .bar-fill{ transform:scaleX(0); }
@@ -526,7 +525,7 @@
 
 
 
-<!-- ══ NAVBAR ══ -->
+
 
 <a class="skip-link" href="#main">Skip to content</a>
 <nav class="navbar" aria-label="Primary navigation">
@@ -583,7 +582,7 @@
 
 
 
-<!-- ══ METRIC CARDS ══ -->
+
 
 <section>
 
@@ -639,7 +638,6 @@
 
 
 
-<!-- ══ PERFORMANCE TABLE ══ -->
 
 <section id="performance">
 
@@ -836,7 +834,6 @@
 
 
 
-<!-- ══ VALIDATION PIPELINE ══ -->
 
 <section id="validation-methods">
 
@@ -914,7 +911,6 @@
 
 
 
-<!-- ══ HONEST NOTE ══ -->
 
 <section class="honest-section">
 
@@ -931,13 +927,9 @@
       <div>
 
         <h3>Promising validation signal; tradability not established</h3>
-
         <p>The supplied dashboard reports <strong>60.5% accuracy at 5 seconds against its 52% reference (+8.5 percentage points)</strong>. Public research summaries report 60.7% for an H0-focused model and 59.9% for H0 in a multi-horizon model. They also state that the validation set was used for checkpoint selection, not as a final independent test. The exact 60.5% run and its p-value / confidence interval remain unverified from the public summary.</p>
-
         <p>The project README reports that the strategy was <strong>economically unviable under the tested maker-execution assumptions</strong>, and that maker-fee sensitivity was evaluated separately. The public summary does not establish the old page’s more specific claim that net PnL was negative across every Binance VIP fee tier; that tier-by-tier statement should be checked against the underlying result files before being restored.</p>
-
         <p>These findings are historical and specific to the evaluated data, checkpoint and execution assumptions. Validation does not guarantee future performance, and a positive classification metric is not evidence of profitability.</p>
-
         <div class="honest-verdict">
 
           <div><span class="k">Validation evidence</span><span class="v">Reported; exact run not reconciled</span></div>
@@ -960,7 +952,6 @@
 
 </main>
 
-<!-- ══ FOOTER ══ -->
 
 <footer>
 
@@ -978,7 +969,6 @@
           </svg>
           <span>EVENTHORIZON<span class="dim"> / CRYPTO</span></span>
         </a>
-
         <p>Temporal AI research &amp; forecasting systems.</p>
 
       </div>
@@ -986,15 +976,11 @@
       <div class="footer-links">
 
         <a href="https://github.com/EventHorizon-ia/EventHorizon" target="_blank" rel="noopener">GitHub Hub</a>
-
         <a href="https://github.com/EventHorizon-ia/EventHorizon-Crypto" target="_blank" rel="noopener">Crypto (prod)</a>
-
         <a href="https://github.com/EventHorizon-ia/EventHorizon-Demand" target="_blank" rel="noopener">Demand (prod)</a>
-
         <a href="https://github.com/EventHorizon-ia/honest-validation-toolkit" target="_blank" rel="noopener">Validation Toolkit</a>
 
         <a href="https://www.tabnews.com.br/" target="_blank" rel="noopener">TabNews</a>
-
         <a href="index-en.html#research">Research</a>
 
       </div>
@@ -1036,7 +1022,6 @@
     target.classList.add('reveal-on-scroll');
     observer.observe(target);
   });
-  // Enable the hide/reveal CSS only after all targets are registered.
   document.documentElement.classList.add('motion-ready');
 
   const mark = document.querySelector('.brand-mark');
