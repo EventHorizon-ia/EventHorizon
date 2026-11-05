@@ -84,7 +84,7 @@ at the price five seconds after the signal.
 Under the evaluated assumptions, the strategy was economically unviable.
 
 **Explore the public audit dashboard:**  
- [EventHorizon Crypto Dashboard](https://eventhorizon-ia.github.io/trader-ai/dashboard-en.html)
+ [EventHorizon Crypto Dashboard](https://eventhorizon-ia.github.io/EventHorizon/dashboard-en.html)
 
 **Research repository:** [crypto-h0-edge](https://github.com/EventHorizon-ia/crypto-h0-edge)
 
@@ -204,7 +204,7 @@ validation infrastructure to the audit tooling.
 |  **Crypto Research** | [github.com/EventHorizon-ia/crypto-h0-edge](https://github.com/EventHorizon-ia/crypto-h0-edge) |
 |  **Demand Research** | [github.com/EventHorizon-ia/demand-m5](https://github.com/EventHorizon-ia/demand-m5) |
 |  **Validation Toolkit** | [github.com/EventHorizon-ia/honest-validation-toolkit](https://github.com/EventHorizon-ia/honest-validation-toolkit) |
-|  **EventHorizon Crypto Audit Dashboard** | [eventhorizon-ia.github.io](https://eventhorizon-ia.github.io/trader-ai/dashboard-en.html) |
+|  **EventHorizon Crypto Audit Dashboard** | [eventhorizon-ia.github.io](https://eventhorizon-ia.github.io/EventHorizon/dashboard-en.html) |
 
 ---
 
