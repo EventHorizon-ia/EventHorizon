@@ -27,6 +27,14 @@
     });
   }
 
+  if (menuToggle && navigation) {
+    const closeMenu = () => { menuToggle.setAttribute("aria-expanded", "false"); navigation.classList.remove("is-open"); };
+    document.addEventListener("click", (event) => {
+      if (navigation.classList.contains("is-open") && !navigation.contains(event.target) && !menuToggle.contains(event.target)) closeMenu();
+    });
+    window.matchMedia("(min-width: 651px)").addEventListener("change", closeMenu);
+  }
+
   function updateDemandMetrics() {
     const chart = document.querySelector(".demand-graphic[data-model-wape][data-baseline-wape]");
     if (!chart) return;
@@ -176,7 +184,7 @@
     const selectors = [
       ".hero-copy", ".hero-visual", ".ticker-inner", ".section-heading", ".project",
       ".validation-layout", ".validation-footnote", ".toolkit-mark", ".toolkit-copy",
-      ".toolkit-aside", ".log-empty", ".about-copy", ".closing-inner", ".footer-top"
+      ".toolkit-aside", ".about-copy", ".closing-inner", ".footer-top"
     ];
     motionTargets = Array.from(new Set(selectors.flatMap((selector) => Array.from(document.querySelectorAll(selector)))));
     motionTargets.forEach((element) => element.classList.add("reveal-on-scroll"));
